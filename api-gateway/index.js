@@ -60,6 +60,6 @@ app.use((err, req, res, next) => {
     res.status(500).json({ message: 'Gateway Error', error: err.message });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
     console.log(`API Gateway is running on port ${PORT}`);
 });
