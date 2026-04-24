@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: api-config
   namespace: ld
-Data:
+data:
   PORT: "3000"
   # JWT_SECRET: "supersecret_jwt_key_change_in_production"
   # AUTH_SERVICE_URL: "http://auth-svc:3001"
