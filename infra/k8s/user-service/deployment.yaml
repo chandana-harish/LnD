@@ -23,17 +23,11 @@ spec:
           image: chandu554/user_lb_image:latest
           ports:
             - containerPort: 3002
-          env:
-            - name: MONGO_URI
-              valueFrom:
-                secretKeyRef:
-                  name: user-secret
-                  key: MONGO_URI
-            - name: PORT
-              valueFrom:
-                configMapKeyRef:
-                  name: user-config
-                  key: PORT
+          envFrom:
+            - configMapRef:
+                name: user-config
+            - secretRef:
+                name: user-secret
           resources:
             requests:
               cpu: "100m"

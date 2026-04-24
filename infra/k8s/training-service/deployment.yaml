@@ -23,17 +23,11 @@ spec:
           image: chandu554/training-ld-service:latest
           ports:
             - containerPort: 3003
-          env:
-            - name: MONGO_URI
-              valueFrom:
-                secretKeyRef:
-                  name: training-secret
-                  key: MONGO_URI
-            - name: PORT
-              valueFrom:
-                configMapKeyRef:
-                  name: training-config
-                  key: PORT
+          envFrom:
+            - configMapRef:
+                name: training-config
+            - secretRef:
+                name: training-secret
           resources:
             requests:
               cpu: "100m"
