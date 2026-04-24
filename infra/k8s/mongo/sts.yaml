@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: ld-sts
+  namespace: ld
+spec:
+  replicas: 2
+  minReadySeconds: 10
+  selector:
+    matchLabels:
+      app: ld
+  template:
+    metadata:
+      labels:
+        app: ld
+    spec:
+      # nodeSelector:
+      #   training: devops
+      # affinity:
+        # podAntiAffinity:
+        #   requiredDuringSchedulingIgnoredDuringExecution:
+        #   - labelSelector:
+        #       matchExpressions:
+        #       - key: app
+        #         operator: In
+        #         values:
+        #           - sujitha-b
+        #     topologyKey: "kubernetes.io/hostname"
+      terminationGracePeriodSeconds: 10
+      containers:
+        - name: mongodb-cont
+          image: mongo
+          ports:
+            - containerPort: 27017
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "200m"
+              memory: "512Mi"
+          volumeMounts:
+            - name: mongo-vct
+              mountPath: /data/db
+  volumeClaimTemplates:
+    - metadata:
+        name: mongo-vct
+      spec:
+        accessModes: ["ReadWriteMany"]
+        storageClassName: "ld-sc"
+        resources:
+          requests:
+            storage: 2Gi
+    
+
+    
