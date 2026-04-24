@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: attendance-deployment 
+  namespace: ld
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ld
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: ld
+    spec:
+      containers:
+        - name: attendance-cont
+          image: chandu554/attendance-service-lb:latest
+          ports:
+            - containerPort: 3004
+          env:
+            - name: MONGO_URI
+              valueFrom:
+                secretKeyRef:
+                  name: attendance-secret
+                  key: MONGO_URI
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: attendance-config
+                  key: PORT
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "200m"
+              memory: "512Mi"

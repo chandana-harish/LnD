@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: training-deployment 
+  namespace: ld
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ld
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: ld
+    spec:
+      containers:
+        - name: training-cont
+          image: chandu554/training-ld-service:latest
+          ports:
+            - containerPort: 3003
+          env:
+            - name: MONGO_URI
+              valueFrom:
+                secretKeyRef:
+                  name: training-secret
+                  key: MONGO_URI
+            - name: PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: training-config
+                  key: PORT
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "200m"
+              memory: "512Mi"
