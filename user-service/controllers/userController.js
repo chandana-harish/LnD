@@ -30,8 +30,8 @@ exports.getAllUsers = async (req, res, next) => {
 // Get current user profile based on gateway header
 exports.getCurrentUser = async (req, res, next) => {
     try {
-        const userId = req.headers['x-user-id'];
-        if (!userId) return res.status(401).json({ message: 'User ID missing in headers' });
+        const userId = req.user.id;
+        if (!userId) return res.status(401).json({ message: 'User ID missing in token' });
         const user = await User.findById(userId).select('-__v');
         if (!user) return res.status(404).json({ message: 'User not found' });
         res.json(user);
