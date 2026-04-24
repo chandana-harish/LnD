@@ -20,9 +20,9 @@ spec:
     spec:
       containers:
         - name: frontend-cont
-          image: chandu554/frontend-lb-service:latest
+          image: chandu554/frontend:v1.2.0
           ports:
-            - containerPort: 5173
+            - containerPort: 80
           env:
             - name: MONGO_URI
               valueFrom:
