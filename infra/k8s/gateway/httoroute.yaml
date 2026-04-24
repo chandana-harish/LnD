@@ -13,7 +13,7 @@ spec:
     - matches:
         - path:
             type: PathPrefix
-            value: /api/auth
+            value: /auth
       backendRefs:
         - name: auth-svc
           port: 3001
@@ -22,7 +22,7 @@ spec:
     - matches:
         - path:
             type: PathPrefix
-            value: /api/users
+            value: /user
       backendRefs:
         - name: user-svc
           port: 3002
@@ -31,7 +31,7 @@ spec:
     - matches:
         - path:
             type: PathPrefix
-            value: /api/training
+            value: /training
       backendRefs:
         - name: training-svc
           port: 3003
@@ -40,7 +40,7 @@ spec:
     - matches:
         - path:
             type: PathPrefix
-            value: /api/attendance
+            value: /attendance
       backendRefs:
         - name: attendance-svc
           port: 3004
