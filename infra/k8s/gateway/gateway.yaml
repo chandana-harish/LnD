@@ -6,7 +6,7 @@ metadata:
 
   name: sps-gateway
 
-  namespace: sps-ns
+  namespace: ld
 
 spec:
 
