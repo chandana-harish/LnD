@@ -3,6 +3,6 @@ kind: ConfigMap
 metadata:
   name: user-config
   namespace: ld
-Data:
+data:
   PORT: "3004"
   NODE_ENV: "development"
