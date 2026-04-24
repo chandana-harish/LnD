@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: frontend-cont
-          image: chandu554/frontend:v1.2.0
+          image: chandu554/frontend:v1.2.1
           ports:
             - containerPort: 80
           env:
