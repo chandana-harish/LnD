@@ -3,6 +3,6 @@ kind: ConfigMap
 metadata:
   name: attendance-config
   namespace: ld
-Data:
+data:
   PORT: "3004"
   NODE_ENV: "development"

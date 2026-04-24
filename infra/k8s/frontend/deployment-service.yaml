@@ -7,6 +7,6 @@ spec:
   selector:
     app: ld
   ports:
-    - port: 3004
-      targetPort: 3004
-  type: ClusterIP
+    - port: 5173
+      targetPort: 5173
+  type: NodePort

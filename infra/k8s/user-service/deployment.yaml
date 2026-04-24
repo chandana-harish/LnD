@@ -22,7 +22,7 @@ spec:
         - name: user-cont
           image: chandu554/user_lb_image:latest
           ports:
-            - containerPort: 3003
+            - containerPort: 3002
           env:
             - name: MONGO_URI
               valueFrom:
