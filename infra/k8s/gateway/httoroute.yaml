@@ -69,11 +69,26 @@ spec:
         - name: attendance-svc
           port: 3004
 
-    # 🔹 FRONTEND (CATCH-ALL FOR SPA ROUTES)
+    # 🔹 ASSETS (Don't rewrite these)
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /assets
+      backendRefs:
+        - name: frontend-svc
+          port: 80
+
+    # 🔹 FRONTEND SPA FALLBACK (Rewrite /login, /dashboard, etc. to /)
     - matches:
         - path:
             type: PathPrefix
             value: /
+      filters:
+        - type: URLRewrite
+          urlRewrite:
+            path:
+              type: ReplaceFullPath
+              replaceFullPath: /
       backendRefs:
         - name: frontend-svc
           port: 80
