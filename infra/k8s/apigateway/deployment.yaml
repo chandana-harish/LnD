@@ -23,17 +23,11 @@ spec:
           image: chandu554/api-gateway-lb-service:latest
           ports:
             - containerPort: 3003
-          env:
-            - name: MONGO_URI
-              valueFrom:
-                secretKeyRef:
-                  name: api-secret
-                  key: MONGO_URI
-            - name: PORT
-              valueFrom:
-                configMapKeyRef:
-                  name: api-config
-                  key: PORT
+          envFrom:
+            - configMapRef:
+                name: api-config 
+            - secretKeyRef: 
+                name: api-secret
           resources:
             requests:
               cpu: "100m"
