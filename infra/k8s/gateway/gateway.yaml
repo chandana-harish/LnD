@@ -4,7 +4,7 @@ kind: Gateway
 
 metadata:
 
-  name: sps-gateway
+  name: ld-gateway
 
   namespace: ld
 
