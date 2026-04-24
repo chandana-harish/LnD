@@ -69,11 +69,14 @@ spec:
         - name: attendance-svc
           port: 3004
 
-    # 🔹 FRONTEND
+    # 🔹 FRONTEND (Match / explicitly to avoid catching API calls)
     - matches:
         - path:
-            type: PathPrefix
+            type: Exact
             value: /
+        - path:
+            type: PathPrefix
+            value: /assets
       backendRefs:
         - name: frontend-svc
           port: 80
