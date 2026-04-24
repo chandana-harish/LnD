@@ -5,7 +5,7 @@ metadata:
   namespace: ld
 spec:
   selector:
-    app: ld
+    app: attendance
   ports:
     - port: 3004
       targetPort: 3004

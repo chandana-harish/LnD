@@ -5,7 +5,7 @@ metadata:
   namespace: ld
 spec:
   selector:
-    app: ld
+    app: api-gateway
   ports:
     - port: 3003
       targetPort: 3003

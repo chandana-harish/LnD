@@ -5,7 +5,7 @@ metadata:
   namespace: ld
 spec:
   selector:
-    app: ld
+    app: auth
   ports:
     - port: 3001
       targetPort: 3001
