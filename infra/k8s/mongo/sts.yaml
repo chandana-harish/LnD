@@ -47,7 +47,7 @@ spec:
         name: mongo-vct
       spec:
         accessModes: ["ReadWriteMany"]
-        storageClassName: "ld-sc"
+        storageClassName: "storage"
         resources:
           requests:
             storage: 2Gi
