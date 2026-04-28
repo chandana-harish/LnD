@@ -17,7 +17,6 @@ const ProtectedRoute = ({ children, roles }) => {
 };
 
 function AppRoutes() {
-    const { user } = useAuth();
     const { user, loading } = useAuth();  // line 1: add ", loading"
 
     if (loading) return <div className="flex items-center justify-center h-screen text-slate-400">Loading...</div>;  // line 2: add this
