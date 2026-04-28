@@ -38,7 +38,12 @@ exports.getEnrollmentsByTraining = async (req, res, next) => {
 
 exports.getMyEnrollments = async (req, res, next) => {
     try {
-        const userId = req.headers['x-user-id'];
+        const userId = req.headers['x-user-id'] || (() => {
+            const auth = req.headers['authorization'];
+            if (!auth) return null;
+            const jwt = require('jsonwebtoken');
+            try { return jwt.decode(auth.split(' ')[1])?.id; } catch { return null; }
+        })();
         if (!userId) return res.status(401).json({ message: 'User ID missing' });
         const enrollments = await Enrollment.find({ userId }).sort({ enrolledAt: -1 });
         res.json(enrollments);
